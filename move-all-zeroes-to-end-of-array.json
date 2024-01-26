@@ -1,0 +1,28 @@
+{
+  "slug": "move-all-zeroes-to-end-of-array",
+  "title": "Move All Zeroes To End Of Array",
+  "c": "#include <stdio.h>\n\nvoid moveZeroesToEnd(int arr[], int n) {\n    int nonZeroIndex = 0;\n\n    for (int i = 0; i < n; i++) {\n        if (arr[i] != 0) {\n            arr[nonZeroIndex++] = arr[i];\n        }\n    }\n\n    \n    while (nonZeroIndex < n) {\n        arr[nonZeroIndex++] = 0;\n    }\n}\n\nint main() {\n    int arr[] = {1, 0, 4, 2, 0, 5, 0, 3, 6};\n    int n = sizeof(arr) / sizeof(arr[0]);\n\n    printf(\"Original Array: \");\n    for (int i = 0; i < n; i++) {\n        printf(\"%d \", arr[i]);\n    }\n\n    moveZeroesToEnd(arr, n);\n\n    printf(\"\\nArray after moving zeroes to the end: \");\n    for (int i = 0; i < n; i++) {\n        printf(\"%d \", arr[i]);\n    }\n\n    return 0;\n}\n",
+  "java": "import java.util.Scanner;\n\npublic class MoveAllZeroesToEndOfArray {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        int[] array = null;\n        while (array == null) {\n            System.out.println(\"Enter a list of numbers separated by commas: \");\n            String input = scanner.nextLine();\n            array = parseInput(input);\n\n            if (array == null) {\n                System.err.println(\"Invalid input. Please enter only integers separated by commas.\");\n            }\n        }\n\n        moveZerosToEnd(array);\n        System.out.println(\"Modified list:\");\n        printArray(array);\n\n        scanner.close();\n    }\n\n    private static int[] parseInput(String input) {\n        String[] inputNumbers = input.split(\",\");\n        int[] array = new int[inputNumbers.length];\n\n        try {\n            for (int i = 0; i < inputNumbers.length; i++) {\n                array[i] = Integer.parseInt(inputNumbers[i].trim());\n            }\n            return array;\n        } catch (NumberFormatException e) {\n            return null;\n        }\n    }\n\n    private static void moveZerosToEnd(int[] array) {\n        int insertPosition = 0;\n\n        for (int num : array) {\n            if (num != 0) {\n                array[insertPosition++] = num;\n            }\n        }\n\n        while (insertPosition < array.length) {\n            array[insertPosition++] = 0;\n        }\n    }\n\n    private static void printArray(int[] array) {\n        for (int i = 0; i < array.length; i++) {\n            System.out.print(array[i]);\n            if (i < array.length - 1) {\n                System.out.print(\", \");\n            }\n        }\n        System.out.println();\n    }\n}\n",
+  "description": "\n## Write a program to move all zeroes to end of array\n\n```txt\r\nInput  : arr[] = {1, 2, 0, 4, 3, 0, 5, 0};\r\nOutput : arr[] = {1, 2, 4, 3, 5, 0, 0, 0};\r\n\r\nInput  : arr[] = {1, 2, 0, 0, 0, 3, 6};\r\nOutput : arr[] = {1, 2, 3, 6, 0, 0, 0};\r\n```\n\n---\n",
+  "trackId": 5133,
+  "lastUpdated": "2024-01-21T13:17:02Z",
+  "contributors": [
+    "chintanrupareliya",
+    "srivamsidandu",
+    "harshraj8843",
+    "Amedi-Imbira",
+    "gabinpoa",
+    "av-techspot",
+    "AlessioBugetti"
+  ],
+  "go": "package main\n\nimport \"fmt\"\n\nfunc moveZeroesToEnd(arr [16]int) [16]int {\n\tvar nonZeroes []int\n\tfor _, elem := range arr {\n\t\tif elem != 0 {\n\t\t\tnonZeroes = append(nonZeroes, elem)\n\t\t}\n\t}\n\n\treturn [16]int(append(nonZeroes, make([]int, len(arr)-len(nonZeroes))...))\n}\n\nfunc main() {\n\tvar arr = [16]int{0, 1, 0, 0, 2, 3, 4, 0, 5, 6, 0, 7, 8, 0, 9, 0}\n\tarr = moveZeroesToEnd(arr)\n\tfmt.Println(arr)\n}\n",
+  "php": "\n<?php\nfunction moveZerosToEnd($arr) {\n    $result = array();\n    $zeroCount = 0;\n\n    foreach ($arr as $value) {\n        if ($value != 0) {\n            $result[] = $value;\n        } else {\n            $zeroCount++;\n        }\n    }\n\n    for ($i = 0; $i < $zeroCount; $i++) {\n        $result[] = 0;\n    }\n\n    return $result;\n}\n\necho \"Enter array elements separated by space: \";\n$input = trim(fgets(STDIN));\n$inputArray = explode(\" \", $input);\n\n$inputArray = array_map('intval', $inputArray);\n\n$resultArray = moveZerosToEnd($inputArray);\necho \"Array after moving zeros to the end: \";\nprint_r($resultArray);\n?>\n",
+  "python": "def zeroes_to_end(arr: list) -> list:\n    result = [x for x in arr if x != 0] + [x for x in arr if x == 0]\n    return result\n\nif __name__ == '__main__':\n    arr = [1, 2, 0, 4, 3, 0, 5, 0]\n    print(zeroes_to_end(arr))\n",
+  "languages": [
+    "c",
+    "java",
+    "go",
+    "php",
+    "python"
+  ]
+}
